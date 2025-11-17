@@ -1,0 +1,159 @@
+:root{
+  --bg1: #fde7f3; /* Softer romantic pink */
+  --bg2: #e9d5ff; /* Softer soothing purple */
+  --accent1:#ff8fc1;
+  --accent2:#d946ef;
+  --muted:#463046;
+  --glass: rgba(255,255,255,0.95);
+  --radius:18px;
+  --shadow: 0 20px 50px rgba(80,30,80,0.07);
+  --ui: 15px/1.45 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font:var(--ui); color:var(--muted);
+  
+  /* Animated Background */
+  background: linear-gradient(160deg, var(--bg1), var(--bg2), var(--bg1), var(--bg2));
+  background-size: 200% 200%; 
+  animation: fadedAnimation 15s infinite alternate ease-in-out;
+  
+  display:flex; flex-direction:column; 
+  align-items:center; 
+  justify-content: space-evenly; /* Fixes header being cut off */
+  padding:2rem;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Layout */
+.wrap{width:100%; max-width:880px; text-align:center}
+.hero{margin-bottom:1.6rem}
+.crown{
+  display:inline-grid; 
+  place-items:center; 
+  width:86px; 
+  height:86px; 
+  border-radius:14px; 
+  background:#fff; 
+  box-shadow:0 12px 36px rgba(217,70,239,0.06); 
+  margin:0 auto 0.9rem;
+  /* ADDED STYLES FOR THE CROWN CONTAINER */
+  padding: 5px; /* Add a little padding inside the white box */
+  overflow: hidden; /* Ensure image doesn't pop out */
+  position: relative; /* For subtle effects later if needed */
+}
+
+/* NEW STYLES FOR THE SHINY CROWN IMAGE */
+.crown img {
+  width: 100%; /* Make the image fill the crown container */
+  height: 100%;
+  object-fit: contain; /* Ensure the whole crown is visible without cropping */
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); /* Soft shadow for depth */
+  transform: translateY(-2px); /* Slightly lift the crown visually */
+}
+
+.title{
+  font-family:"Playfair Display", serif; 
+  font-size:clamp(1.6rem,4.5vw,2.8rem); 
+  margin:0; 
+  color:#3a2438; 
+  line-height:1.25 /* Corrected line height */
+}
+.accent{background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.subtitle{margin:.6rem 0 0; font-size:.98rem; color:rgba(64,40,60,0.9)}
+
+/* Wheel area */
+.wheel-area{position:relative; display:flex; flex-direction:column; align-items:center; gap:1rem}
+.wheel{
+  --size:400px; /* Increased size for gaps */
+  width:var(--size); height:var(--size);
+  border-radius:50%;
+  background: radial-gradient(circle at 40% 30%, rgba(217,70,239,0.02), transparent 22%);
+  display:grid; place-items:center; position:relative;
+  box-shadow: var(--shadow);
+  border: 2px solid;
+  border-color: rgba(255,255,255,0.7) rgba(217,70,239,0.2) rgba(217,70,239,0.2) rgba(255,255,255,0.7);
+  touch-action:none;
+  user-select:none;
+}
+
+/* center badge */
+.center-badge{
+  position:absolute; 
+  width:165px; /* Increased size */
+  height:165px; /* Increased size */
+  border-radius:50%;
+  background: linear-gradient(180deg,#fff,#fffaf6);
+  display:grid; place-items:center; text-align:center; padding:1rem;
+  font-weight:700; color:var(--accent2); box-shadow:0 12px 36px rgba(217,70,239,0.06);
+  transform: translateZ(0); z-index:40;
+}
+
+/* minimal item bubble */
+.item{position:absolute; left:50%; top:50%; width:180px; display:flex; justify-content:center; pointer-events:auto; transition: transform .28s cubic-bezier(.22,.9,.3,1), opacity .18s}
+
+.bubble{
+  background: #ffffff; 
+  padding:.5rem .85rem;
+  border-radius:12px;
+  box-shadow: 0 8px 26px rgba(60,20,60,0.06);
+  border: 2px solid var(--accent1); 
+  font-weight:600; color:#4a2b4f; max-width:170px;
+  display:flex; gap:.6rem; align-items:center; justify-content:center; text-align:center;
+  transform-origin:center;
+  line-height:1.2;
+  transition: background .2s, color .2s, border-color .2s; 
+}
+
+.item[data-front="true"] .bubble{ 
+  transform: translateY(-6px) scale(1.03); 
+  box-shadow: 0 20px 44px rgba(80,30,80,0.09); 
+  z-index:60;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2)); 
+  color: #ffffff; 
+  border-color: #ffffff; 
+}
+
+/* controls */
+.controls{display:flex; gap:.6rem; margin-top:.6rem}
+.btn{border:0;padding:.6rem 1rem;border-radius:10px; cursor:pointer; font-weight:700; background:transparent; border:1px solid rgba(60,20,60,0.06); color:var(--muted); transition: transform .12s ease, box-shadow .12s}
+.btn:hover{transform:translateY(-3px); box-shadow:0 10px 22px rgba(60,20,60,0.06)}
+.btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:white; border:0; box-shadow:0 14px 36px rgba(217,70,239,0.12)}
+
+.note{font-size:.9rem;color:rgba(64,40,60,0.7); margin-top:.25rem}
+
+/* responsive */
+@media (max-width:720px){
+  .wheel{--size:340px; width:340px; height:340px} 
+  .center-badge{width:135px;height:135px;font-size:.9rem} 
+  .item{width:160px}
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  .item, .center-badge { transition:none; animation:none !important }
+}
+
+/* --- FOOTER STYLE --- */
+.footer-note {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+  font-size: 0.9rem;
+  color: rgba(64, 40, 60, 0.6); 
+  font-weight: 500;
+}
+
+/* --- ANIMATION KEYFRAMES --- */
+@keyframes fadedAnimation {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
