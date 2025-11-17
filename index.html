@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Princess Day — love wheel</title>
+  <meta name="description" content="A tiny love wheel — spin, tap, and send a sweet message." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap" role="main" aria-labelledby="title">
+    <header class="hero">
+      
+      <h1 id="title" class="title">
+        Happy Princess Day<br>
+        <span class="accent">My Smoochy</span> 👑💖
+      </h1>
+      <p class="subtitle">A tiny love wheel — spin, tap, and send a sweet message.</p>
+    </header>
+
+    <section class="wheel-area" aria-label="Love wheel">
+      <div id="wheel" class="wheel" tabindex="0" aria-roledescription="rotating wheel of messages" aria-label="Love wheel"></div>
+
+      <div class="center-badge" id="centerBadge" aria-live="polite">Tap or drag to spin</div>
+
+      <div class="controls">
+        <button id="spin" class="btn">Spin 💫</button>
+        <button id="send" class="btn primary">Send Smooch 💋</button>
+      </div>
+
+      <div id="note" class="note" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="footer-note">
+    <p>made with pure love and care - your Luckily 🤍</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
